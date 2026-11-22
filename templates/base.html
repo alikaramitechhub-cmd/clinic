@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="mdui-theme-auto">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}نوبت‌یار{% endblock %} | سامانه نوبت‌دهی آنلاین</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@2/mdui.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<mdui-layout full-height>
+
+  <mdui-navigation-drawer modal close-on-overlay-click id="drawer">
+    <mdui-list>
+      <mdui-list-item href="{% url 'core:home' %}">صفحه اصلی</mdui-list-item>
+      <mdui-list-item href="{% url 'core:about' %}">درباره ما</mdui-list-item>
+      <mdui-list-item href="{% url 'core:contact' %}">تماس با ما</mdui-list-item>
+      {% if not user.is_authenticated %}
+        <mdui-list-item href="{% url 'accounts:login' %}">ورود</mdui-list-item>
+        <mdui-list-item href="{% url 'accounts:register' %}">ثبت‌نام</mdui-list-item>
+      {% endif %}
+    </mdui-list>
+  </mdui-navigation-drawer>
+
+  <mdui-top-app-bar scroll-behavior="elevate">
+    <mdui-button-icon id="menu-btn" class="only-mobile">&#9776;</mdui-button-icon>
+    <mdui-top-app-bar-title>🩺 نوبت‌یار</mdui-top-app-bar-title>
+
+    <nav class="desktop-nav">
+      <mdui-button variant="text" href="{% url 'core:home' %}">صفحه اصلی</mdui-button>
+      <mdui-button variant="text" href="{% url 'core:about' %}">درباره ما</mdui-button>
+      <mdui-button variant="text" href="{% url 'core:contact' %}">تماس با ما</mdui-button>
+    </nav>
+
+    <div style="flex-grow:1"></div>
+    <mdui-button-icon id="theme-btn">&#9790;</mdui-button-icon>
+
+    {% if user.is_authenticated %}
+      <span class="hello">{{ user.first_name|default:user.username }}</span>
+      <form method="post" action="{% url 'accounts:logout' %}" class="inline-form">
+        {% csrf_token %}
+        <mdui-button variant="tonal" type="submit">خروج</mdui-button>
+      </form>
+    {% else %}
+      <mdui-button variant="text" href="{% url 'accounts:login' %}" class="desktop-nav">ورود</mdui-button>
+      <mdui-button variant="filled" href="{% url 'accounts:register' %}" class="desktop-nav">ثبت‌نام</mdui-button>
+    {% endif %}
+  </mdui-top-app-bar>
+
+  <mdui-layout-main>
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+      <p>© ۱۴۰۵ نوبت‌یار؛ سامانه نوبت‌دهی آنلاین مطب و درمانگاه</p>
+    </footer>
+  </mdui-layout-main>
+</mdui-layout>
+
+<div id="django-messages" hidden>
+  {% for m in messages %}<span data-tag="{{ m.tags }}">{{ m }}</span>{% endfor %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mdui@2/mdui.global.js"></script>
+<script src="{% static 'js/app.js' %}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+  <div class="hero-inner">
+    <h1>نوبت پزشک، بدون انتظار</h1>
+    <p>پزشک مناسب را پیدا کنید و در چند ثانیه نوبت بگیرید.</p>
+    <div class="hero-actions">
+      <mdui-button variant="filled" href="{% url 'accounts:register' %}">شروع کنید</mdui-button>
+      <mdui-button variant="outlined" href="{% url 'core:about' %}">بیشتر بدانید</mdui-button>
+    </div>
+  </div>
+</section>
+{% endblock %}

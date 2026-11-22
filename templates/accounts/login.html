@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}ورود{% endblock %}
+{% block content %}
+<section class="auth-wrap">
+  <mdui-card variant="elevated" class="auth-card">
+    <div class="auth-head">
+      <h1>ورود به حساب</h1>
+      <p>نوبت‌های خود را مشاهده و مدیریت کنید.</p>
+    </div>
+
+    <form method="post" novalidate id="login-form">
+      {% csrf_token %}
+      {% if form.non_field_errors %}
+        <div class="field-error box">نام کاربری یا رمز عبور اشتباه است.</div>
+      {% endif %}
+      <div class="field reveal">
+        <mdui-text-field
+          variant="outlined"
+          name="{{ form.username.html_name }}"
+          label="{{ form.username.label }}"
+          type="text"
+          value="{{ form.username.value|default_if_none:'' }}"
+          dir="ltr"
+          required clearable>
+        </mdui-text-field>
+        {% for error in form.username.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+      <div class="field reveal">
+        <mdui-text-field
+          variant="outlined"
+          name="{{ form.password.html_name }}"
+          label="{{ form.password.label }}"
+          type="password"
+          toggle-password
+          required clearable>
+        </mdui-text-field>
+        {% for error in form.password.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+      <input type="hidden" name="next" value="{{ next }}">
+      <mdui-button type="submit" variant="filled" full-width id="submit-btn">ورود</mdui-button>
+    </form>
+
+    <p class="auth-foot">حساب ندارید؟ <a href="{% url 'accounts:register' %}">ثبت‌نام کنید</a></p>
+  </mdui-card>
+</section>
+{% endblock %}
