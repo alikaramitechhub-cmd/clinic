@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}تماس با ما{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <h1>تماس با ما</h1>
+  <p>سؤال، پیشنهاد یا مشکلی دارید؟ خوشحال می‌شویم بشنویم.</p>
+</section>
+
+<section class="container contact-grid">
+  <div class="info-list">
+    <mdui-card variant="filled" class="info-card reveal">
+      <div><h3>آدرس</h3><p>تهران، خیابان ولیعصر، نبش خیابان فرضی، پلاک ۱۲۳</p></div>
+    </mdui-card>
+    <mdui-card variant="filled" class="info-card reveal">
+      <div><h3>تلفن</h3><p dir="ltr">021-12345678</p></div>
+    </mdui-card>
+    <mdui-card variant="filled" class="info-card reveal">
+      <div><h3>ایمیل</h3><p dir="ltr">support@nobatyar.example</p></div>
+    </mdui-card>
+    <mdui-card variant="filled" class="info-card reveal">
+      <div><h3>ساعات پاسخگویی</h3><p>شنبه تا پنجشنبه، ۸ تا ۲۰</p></div>
+    </mdui-card>
+  </div>
+
+  <mdui-card variant="elevated" class="form-card">
+    <h2>فرم تماس</h2>
+    <form method="post" novalidate id="contact-form">
+      {% csrf_token %}
+      <div class="field reveal">
+        <mdui-text-field
+          variant="outlined"
+          name="{{ form.name.html_name }}"
+          label="{{ form.name.label }}"
+          type="text"
+          value="{{ form.name.value|default_if_none:'' }}"
+          required clearable>
+        </mdui-text-field>
+        {% for error in form.name.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+      <div class="field reveal">
+        <mdui-text-field
+          variant="outlined"
+          name="{{ form.email.html_name }}"
+          label="{{ form.email.label }}"
+          type="email"
+          value="{{ form.email.value|default_if_none:'' }}"
+          dir="ltr"
+          required clearable>
+        </mdui-text-field>
+        {% for error in form.email.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+      <div class="field reveal">
+        <mdui-text-field
+          variant="outlined"
+          name="{{ form.subject.html_name }}"
+          label="{{ form.subject.label }}"
+          type="text"
+          value="{{ form.subject.value|default_if_none:'' }}"
+          required clearable>
+        </mdui-text-field>
+        {% for error in form.subject.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+      <div class="field reveal">
+        <mdui-text-field
+          variant="outlined"
+          name="{{ form.message.html_name }}"
+          label="{{ form.message.label }}"
+          type="text"
+          rows="5"
+          value="{{ form.message.value|default_if_none:'' }}"
+          required clearable>
+        </mdui-text-field>
+        {% for error in form.message.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+      <small class="muted"><span id="char-count">0</span> / 1000 کاراکتر</small>
+      <mdui-button type="submit" variant="filled" full-width id="submit-btn">ارسال پیام</mdui-button>
+    </form>
+  </mdui-card>
+</section>
+{% endblock %}

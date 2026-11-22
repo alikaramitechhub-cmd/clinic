@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}درباره ما{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <h1>درباره نوبت‌یار</h1>
+  <p>نوبت‌گیری از پزشک، به سادگی چند کلیک؛ بدون تلفن، بدون معطلی.</p>
+</section>
+
+<section class="container">
+  <div class="about-intro reveal">
+    <h2>ما که هستیم؟</h2>
+    <p>نوبت‌یار یک سامانه نوبت‌دهی آنلاین برای مطب‌ها و درمانگاه‌هاست. ایده این پروژه از تجربه‌ی آشنای انتظار طولانی در تلفن و راهروی مطب شکل گرفت.
+       هدف ما این است که بیمار بتواند پزشک مناسب را بر اساس تخصص پیدا کند، از میان زمان‌های خالی نوبت بگیرد و نوبت‌هایش را مدیریت کند،
+       و پزشک و منشی هم برنامه روزانه را در یک پنل ساده ببینند.</p>
+  </div>
+
+  <div class="stats">
+    <mdui-card class="stat reveal"><b data-count="120">0</b><span>پزشک متخصص</span></mdui-card>
+    <mdui-card class="stat reveal"><b data-count="15">0</b><span>تخصص پزشکی</span></mdui-card>
+    <mdui-card class="stat reveal"><b data-count="8500">0</b><span>نوبت ثبت‌شده</span></mdui-card>
+    <mdui-card class="stat reveal"><b data-count="98">0</b><span>درصد رضایت</span></mdui-card>
+  </div>
+
+  <h2 class="section-title reveal">نوبت‌گیری در سه قدم</h2>
+  <div class="steps">
+    <mdui-card variant="outlined" class="step reveal"><h3>۱. جست‌وجو</h3><p>پزشک را بر اساس تخصص یا نام پیدا کنید.</p></mdui-card>
+    <mdui-card variant="outlined" class="step reveal"><h3>۲. انتخاب زمان</h3><p>از بین ساعت‌های خالی، زمان دلخواه را رزرو کنید.</p></mdui-card>
+    <mdui-card variant="outlined" class="step reveal"><h3>۳. مراجعه</h3><p>در زمان مقرر حاضر شوید و پس از ویزیت امتیاز بدهید.</p></mdui-card>
+  </div>
+
+  <h2 class="section-title reveal">ارزش‌های ما</h2>
+  <div class="steps">
+    <mdui-card variant="filled" class="step reveal"><h3>سرعت</h3><p>رزرو نوبت در کمتر از یک دقیقه.</p></mdui-card>
+    <mdui-card variant="filled" class="step reveal"><h3>اعتماد</h3><p>حفظ حریم خصوصی و اطلاعات بیماران.</p></mdui-card>
+    <mdui-card variant="filled" class="step reveal"><h3>شفافیت</h3><p>نمایش هزینه ویزیت و نظرات واقعی بیماران.</p></mdui-card>
+  </div>
+
+
+
+  <h2 class="section-title reveal">سؤالات متداول</h2>
+  <mdui-collapse accordion class="reveal faq">
+    <mdui-collapse-item value="1"><mdui-list-item slot="header">آیا نوبت‌گیری هزینه دارد؟</mdui-list-item><div class="faq-body">نوبت‌گیری برای بیماران رایگان است و فقط هزینه ویزیت در مطب پرداخت می‌شود.</div></mdui-collapse-item>
+    <mdui-collapse-item value="2"><mdui-list-item slot="header">چطور نوبت را لغو کنم؟</mdui-list-item><div class="faq-body">از بخش «نوبت‌های من» می‌توانید نوبت‌های پیش‌رو را لغو کنید.</div></mdui-collapse-item>
+    <mdui-collapse-item value="3"><mdui-list-item slot="header">آیا می‌توانم به پزشک امتیاز بدهم؟</mdui-list-item><div class="faq-body">بله، پس از انجام ویزیت امکان امتیازدهی فراهم می‌شود.</div></mdui-collapse-item>
+  </mdui-collapse>
+</section>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block title %}ثبت‌نام{% endblock %}
+{% block content %}
+<section class="auth-wrap">
+  <mdui-card variant="elevated" class="auth-card">
+    <div class="auth-head">
+      <h1>ایجاد حساب کاربری</h1>
+      <p>برای نوبت‌گیری از بهترین پزشکان، ثبت‌نام کنید.</p>
+    </div>
+
+    <form method="post" novalidate id="register-form">
+      {% csrf_token %}
+      {% for e in form.non_field_errors %}<div class="field-error box">{{ e }}</div>{% endfor %}
+      <div class="grid-2">
+        <div class="field reveal">
+          <mdui-text-field
+            variant="outlined"
+            name="{{ form.first_name.html_name }}"
+            label="{{ form.first_name.label }}"
+            type="text"
+            value="{{ form.first_name.value|default_if_none:'' }}"
+            required clearable>
+          </mdui-text-field>
+          {% for error in form.first_name.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="field reveal">
+          <mdui-text-field
+            variant="outlined"
+            name="{{ form.last_name.html_name }}"
+            label="{{ form.last_name.label }}"
+            type="text"
+            value="{{ form.last_name.value|default_if_none:'' }}"
+            required clearable>
+          </mdui-text-field>
+          {% for error in form.last_name.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+        </div>
+      </div>
+      <div class="field reveal">
+        <mdui-text-field
+          variant="outlined"
+          name="{{ form.username.html_name }}"
+          label="{{ form.username.label }}"
+          type="text"
+          value="{{ form.username.value|default_if_none:'' }}"
+          dir="ltr"
+          required clearable>
+        </mdui-text-field>
+        {% for error in form.username.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+      <div class="field reveal">
+        <mdui-text-field
+          variant="outlined"
+          name="{{ form.email.html_name }}"
+          label="{{ form.email.label }}"
+          type="email"
+          value="{{ form.email.value|default_if_none:'' }}"
+          dir="ltr"
+          required clearable>
+        </mdui-text-field>
+        {% for error in form.email.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+      <div class="field reveal">
+        <mdui-text-field
+          variant="outlined"
+          name="{{ form.phone.html_name }}"
+          label="{{ form.phone.label }}"
+          type="tel"
+          value="{{ form.phone.value|default_if_none:'' }}"
+          dir="ltr"
+          required clearable>
+        </mdui-text-field>
+        {% for error in form.phone.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+      <div class="field reveal">
+        <mdui-text-field
+          variant="outlined"
+          name="{{ form.password1.html_name }}"
+          label="{{ form.password1.label }}"
+          type="password"
+          toggle-password
+          required clearable>
+        </mdui-text-field>
+        {% for error in form.password1.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+      <mdui-linear-progress id="strength" value="0" max="4"></mdui-linear-progress>
+      <small id="strength-text" class="muted">قدرت رمز عبور</small>
+      <div class="field reveal">
+        <mdui-text-field
+          variant="outlined"
+          name="{{ form.password2.html_name }}"
+          label="{{ form.password2.label }}"
+          type="password"
+          toggle-password
+          required clearable>
+        </mdui-text-field>
+        {% for error in form.password2.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+
+      <mdui-button type="submit" variant="filled" full-width id="submit-btn">ثبت‌نام</mdui-button>
+    </form>
+
+    <p class="auth-foot">حساب دارید؟ <a href="{% url 'accounts:login' %}">وارد شوید</a></p>
+  </mdui-card>
+</section>
+{% endblock %}
