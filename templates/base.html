@@ -61,7 +61,7 @@
   {% for m in messages %}<span data-tag="{{ m.tags }}">{{ m }}</span>{% endfor %}
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/mdui@2/mdui.global.js"></script>
+<script src="{% static 'js/mdui.global.js' %}"></script>
 <script src="{% static 'js/app.js' %}"></script>
 {% block scripts %}{% endblock %}
 </body>
